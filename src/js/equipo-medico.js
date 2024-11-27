@@ -19,9 +19,6 @@ function removeDoctor(event) {
 
   doctors.splice(index, 1);
 
-  console.log('Doctor eliminado', index);
-  console.log('Doctores restantes', doctors);
-
   const btn = event.target;
 
   btn.parentElement.parentElement.parentElement.parentElement.remove();
@@ -56,7 +53,18 @@ console.log(`Experiencia del doctor ${dr.nombre}: ${dr.experiencia}`);
 window.removeDoctor = removeDoctor;
 
 function generateDoctorCard(doctor, index) {
-  const { image, name, description, experience, available } = doctor;
+  const {
+    image,
+    name,
+    description,
+    experience,
+    available,
+    contacto: { telefono, email },
+    horarios,
+  } = doctor;
+
+  console.log(doctor);
+  console.log(doctor.contacto);
 
   return `
     <div class="col-3 mb-5">
@@ -68,6 +76,12 @@ function generateDoctorCard(doctor, index) {
             ${description}
             <br>
             ${experience} años de experiencia
+            <br>
+            Telefono: ${telefono}
+            <br>
+            Email: ${email}
+            <br>
+            Horario: ${horarios.join(', ')}
             <br>
             <strong>${
               available ? 'Disponible' : 'No disponible'
@@ -84,11 +98,19 @@ function renderDoctors(docs) {
   let doctorsHtmlContent = '';
 
   docs.forEach((doc) => {
-    const { image, name, description, experience, available } = doc;
+    const {
+      image,
+      name,
+      description,
+      experience,
+      available,
+      contacto,
+      horarios,
+    } = doc;
     const index = doctors.indexOf(doc);
 
     doctorsHtmlContent += generateDoctorCard(
-      { image, name, description, experience, available },
+      { image, name, description, experience, available, contacto, horarios },
       index
     );
   });
@@ -100,7 +122,7 @@ console.log('equipo-medico');
 
 renderDoctors(doctors);
 
-const clonedDocs = [...doctors.map((doc) => ({ ...doc }))];
+const clonedDocs = JSON.parse(JSON.stringify(doctors));
 clonedDocs[0].name = 'Doctor Modificado';
 console.log('Cloned docs', clonedDocs);
 console.log('Original docs', doctors);
@@ -202,4 +224,45 @@ btnAddDoctor.addEventListener('click', () => {
   );
 
   doctorModal.hide();
+});
+
+const btnSortExp = document.querySelector('#sort-exp');
+
+let sortByExp = false;
+let sortByName = false;
+
+btnSortExp.addEventListener('click', () => {
+  sortByExp = !sortByExp;
+  const icon = document.querySelector('#iconoExperiencia');
+
+  if (sortByExp) {
+    sortByFn(doctors, (a, b) => b.experience - a.experience);
+    icon.classList.remove('bx-up-arrow-alt');
+    icon.classList.add('bx-down-arrow-alt');
+  } else {
+    sortByFn(doctors, (a, b) => a.experience - b.experience);
+    icon.classList.remove('bx-down-arrow-alt');
+    icon.classList.add('bx-up-arrow-alt');
+  }
+
+  renderDoctors(doctors);
+});
+
+const btnSortName = document.querySelector('#sort-name');
+
+btnSortName.addEventListener('click', () => {
+  sortByExp = !sortByExp;
+  const icon = document.querySelector('#iconoNombre');
+
+  if (sortByExp) {
+    sortByFn(doctors, (a, b) => (b.name < a.name ? 1 : -1));
+    icon.classList.remove('bx-up-arrow-alt');
+    icon.classList.add('bx-down-arrow-alt');
+  } else {
+    sortByFn(doctors, (a, b) => (a.name < b.name ? 1 : -1));
+    icon.classList.remove('bx-down-arrow-alt');
+    icon.classList.add('bx-up-arrow-alt');
+  }
+
+  renderDoctors(doctors);
 });
