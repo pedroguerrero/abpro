@@ -1,8 +1,9 @@
 export class Doctor {
-  constructor(nombre, especialidad, experiencia) {
+  constructor(nombre, especialidad, experiencia, precioConsulta) {
     this.nombre = nombre;
     this.especialidad = especialidad;
     this._experiencia = experiencia;
+    this.precioConsulta = precioConsulta;
     this.pacienes = [];
   }
 
@@ -29,5 +30,9 @@ export class Doctor {
 
   set experiencia(experience) {
     this._experiencia = experience;
+  }
+
+  totalIngresos() {
+    return this.pacienes.length * this.precioConsulta;
   }
 }

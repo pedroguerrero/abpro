@@ -10,7 +10,7 @@ function calculateTotalHours(doctors, doctorList) {
     return;
   }
 
-  const doctor = doctorList.pop();
+  const [doctor, ...rest] = doctorList;
 
   if (!(doctor in doctors)) {
     doctors[doctor] = 0;
@@ -18,7 +18,7 @@ function calculateTotalHours(doctors, doctorList) {
 
   doctors[doctor] += 1;
 
-  return calculateTotalHours(doctors, doctorList);
+  return calculateTotalHours(doctors, rest);
 }
 
 async function getDoctors(cbError) {
@@ -57,12 +57,12 @@ console.log('Pagina de cita de pacientes');
 console.log('Creando pacientes');
 
 document.addEventListener('newPatient', (event) => {
-  const alert = document.querySelector('#new-patient-alert');
+  const message = document.querySelector('#new-patient-alert');
   const {
     detail: { name, doctorName },
   } = event;
 
-  alert.innerHTML = `
+  message.innerHTML = `
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Nuevo Paciente </strong>Se agendo un nuevo paciente: <strong>${name}</strong> con el <strong>Dr ${doctorName}</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -70,7 +70,7 @@ document.addEventListener('newPatient', (event) => {
   `;
 
   setTimeout(() => {
-    alert.innerHTML = '';
+    message.innerHTML = '';
   }, 3500);
 });
 
@@ -332,5 +332,30 @@ document.addEventListener('newPatient', (event) => {
     document.dispatchEvent(customEvent);
 
     addPatientModal.hide();
+  });
+
+  const attendPatient = document.querySelector('#enter-patient-button');
+
+  attendPatient.addEventListener('click', () => {
+    if (patientsQueue.isEmpty()) {
+      alert('No hay pacientes en espera');
+      return;
+    }
+
+    const { name, doctorName } = patientsQueue.dequeue();
+
+    document.querySelector('#pending-patients tbody tr:nth-child(1)').remove();
+
+    const message = document.querySelector('#new-patient-alert');
+    message.innerHTML = `
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Nuevo Paciente </strong>Se atendio al paciente: <strong>${name}</strong> con el <strong>Dr ${doctorName}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+
+    setTimeout(() => {
+      message.innerHTML = '';
+    }, 3500);
   });
 })();
