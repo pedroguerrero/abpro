@@ -61,6 +61,7 @@ function generateDoctorCard(doctor, index) {
     available,
     contacto: { telefono, email },
     horarios,
+    especialidad,
   } = doctor;
 
   console.log(doctor);
@@ -72,10 +73,11 @@ function generateDoctorCard(doctor, index) {
         <img src="${image}" class="card-img-top" alt="..." />
         <div class="card-body">
           <h3 class="card-title">${name}</h3>
+          <h5 class="text-muted"> ${especialidad}</h5>
           <p class="card-text">
             ${description}
             <br>
-            ${experience} años de experiencia
+            <strong>${experience}</strong> años de experiencia
             <br>
             Telefono: ${telefono}
             <br>
@@ -106,11 +108,21 @@ function renderDoctors(docs) {
       available,
       contacto,
       horarios,
+      especialidad,
     } = doc;
     const index = doctors.indexOf(doc);
 
     doctorsHtmlContent += generateDoctorCard(
-      { image, name, description, experience, available, contacto, horarios },
+      {
+        image,
+        name,
+        description,
+        experience,
+        available,
+        contacto,
+        horarios,
+        especialidad,
+      },
       index
     );
   });
@@ -151,9 +163,9 @@ searchText.addEventListener('keyup', (event) => {
     const searchTerm = event.target.value.trim();
 
     const filteredDoctors = doctors.filter(
-      ({ name, description }) =>
+      ({ name, description, especialidad }) =>
         name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        description.toLowerCase().includes(searchTerm.toLowerCase())
+        especialidad.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     renderDoctors(filteredDoctors);
@@ -203,15 +215,38 @@ btnAddDoctor.addEventListener('click', () => {
 
   modalInputs.forEach((input) => {
     const field = input.getAttribute('data-field');
-    doctor[field] = input.value;
+
+    if (field.includes('.')) {
+      const [attrA, attrB] = field.split('.');
+      if (!doctor[attrA]) {
+        doctor[attrA] = {};
+      }
+
+      doctor[attrA][attrB] = input.value;
+    } else if (
+      field.includes('horario-inicio') ||
+      field.includes('horario-termino')
+    ) {
+      if (!doctor.horarios) {
+        doctor.horarios = [];
+      }
+
+      doctor.horarios.push(input.value);
+    } else {
+      doctor[field] = input.value;
+    }
+
+    console.log('DOCTOR', doctor);
   });
 
   const available = document.querySelector('#disponibilidad-doctor').value;
+  const spec = document.querySelector('#especialidad-doctor').value;
 
   console.log(available);
 
   doctor.experience = Number(doctor.experience);
   doctor.available = available === 'disponible';
+  doctor.especialidad = spec;
   doctor.image = 'img/doc-1.png';
 
   console.log('Doctor a agregar', doctor);
@@ -251,10 +286,10 @@ btnSortExp.addEventListener('click', () => {
 const btnSortName = document.querySelector('#sort-name');
 
 btnSortName.addEventListener('click', () => {
-  sortByExp = !sortByExp;
+  sortByName = !sortByName;
   const icon = document.querySelector('#iconoNombre');
 
-  if (sortByExp) {
+  if (sortByName) {
     sortByFn(doctors, (a, b) => (b.name < a.name ? 1 : -1));
     icon.classList.remove('bx-up-arrow-alt');
     icon.classList.add('bx-down-arrow-alt');

@@ -79,6 +79,47 @@
           </div>
 
           <div class="mb-3">
+            <label for="telefono-doctor" class="form-label">Telefono</label>
+            <input data-field="contacto.telefono" data-regex="^[0-9]{1,}$" type="number" id="telefono-doctor"
+              class="form-control" placeholder="Telefono">
+            <span class="text-danger"></span>
+          </div>
+
+          <div class="mb-3">
+            <label for="email-doctor" class="form-label">Email</label>
+            <input data-field="contacto.email" data-regex=".+@.+" type="email" id="email-doctor" class="form-control"
+              placeholder="Email">
+            <span class="text-danger"></span>
+          </div>
+
+          <div class="mb-3">
+            <label for="date-start-doctor" class="form-label">Horario Inicio</label>
+            <input data-field="horario-inicio" data-regex=".*" type="date" id="date-start-doctor" class="form-control"
+              placeholder="Fecha Inicio">
+            <span class="text-danger"></span>
+          </div>
+
+          <div class="mb-3">
+            <label for="date-end-doctor" class="form-label">Horario Termino</label>
+            <input data-field="horario-termino" data-regex=".*" type="date" id="date-end-doctor" class="form-control"
+              placeholder="Fecha Termino">
+            <span class="text-danger"></span>
+          </div>
+
+          <div class="mb-3">
+            <label for="especialidad-doctor" class="form-label">Especialidad</label>
+            <select data-field="especialidad" id="especialidad-doctor" class="form-select"
+              aria-label="Select especialidad">
+              <option value="Cirujano">Cirujano</option>
+              <option value="Gastroenterólogo">Gastroenterólogo</option>
+              <option value="Ginecólogo">Ginecólogo</option>
+              <option value="Pediatra">Pediatra</option>
+              <option value="Oftalmólogo">Oftalmólogo</option>
+              <option value="Cardiólogo">Cardiólogo</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
             <label for="disponibilidad-doctor" class="form-label">Disponible</label>
             <select data-field="available" id="disponibilidad-doctor" class="form-select"
               aria-label="Select disponibilidad">

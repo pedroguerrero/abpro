@@ -8,6 +8,7 @@ export const doctors = [
     available: false,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Cirujano',
   },
   {
     name: 'Dr. Isabel Gutierrez',
@@ -18,6 +19,7 @@ export const doctors = [
     available: true,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Gastroenterólogo',
   },
   {
     name: 'Dr. Carlos Morales',
@@ -28,6 +30,7 @@ export const doctors = [
     available: false,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Ginecólogo',
   },
   {
     name: 'Dr. Ana Martinez',
@@ -38,6 +41,7 @@ export const doctors = [
     available: true,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Pediatra',
   },
   {
     name: 'Dr. Javier Gomez',
@@ -48,6 +52,7 @@ export const doctors = [
     available: false,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Oftalmólogo',
   },
   {
     name: 'Dr. Maria Perez',
@@ -58,6 +63,7 @@ export const doctors = [
     available: true,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Cardiólogo',
   },
   {
     name: 'Dr. Eduardo Rojas',
@@ -68,6 +74,7 @@ export const doctors = [
     available: false,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Cirujano',
   },
   {
     name: 'Dr. Laura Sanchez',
@@ -78,5 +85,6 @@ export const doctors = [
     available: true,
     contacto: { telefono: '123456789', email: 'juan.perez@hospital.com' },
     horarios: ['Lunes 9-12', 'Miércoles 10-14'],
+    especialidad: 'Cirujano',
   },
 ];
