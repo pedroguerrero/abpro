@@ -6,6 +6,7 @@ import { services } from './data/services';
 import { Doctor } from './classes/Doctor';
 import { Pediatra } from './classes/Pediatra';
 import { Cirujano } from './classes/Cirujano';
+import { Paciente } from './classes/Paciente';
 
 function fixIndex() {
   const btns = document.querySelectorAll('.doctors-row .btn-close');
@@ -44,7 +45,7 @@ function sortByFn(data, fn) {
 console.log('Ordernando doctores por años de experiencia');
 sortByFn(doctors, (a, b) => b.experience - a.experience);
 
-const dr = new Doctor('Dr. Juan', 'Cardiologo', 10);
+const dr = new Doctor('Dr. Juan', 'Cardiologo', 10, 30000);
 
 console.log(`Experiencia del doctor ${dr.nombre}: ${dr.experiencia}`);
 
@@ -53,6 +54,12 @@ dr.experiencia = 15;
 console.log(`Experiencia del doctor ${dr.nombre}: ${dr.experiencia}`);
 
 dr.mostarDatos();
+
+dr.agregarPaciente(new Paciente('Paciente 1'));
+dr.agregarPaciente(new Paciente('Paciente 2'));
+dr.agregarPaciente(new Paciente('Paciente 3'));
+
+console.log(`Total de ingresos del ${dr.nombre}: ${dr.totalIngresos()}`);
 
 const pediatra = new Pediatra('Dr. Andres', 5);
 
