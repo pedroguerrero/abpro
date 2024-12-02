@@ -1,10 +1,9 @@
 # Modulo 3 Evaluación grupal
 
 ## Autores
-Pedro Guerrero
-Bastian Ortega
-Nadja Villarroel
-
+- Pedro Guerrero
+- Bastian Ortega
+- Nadja Villarroel
 
 ## Manipulación de Datos con JSON y Simulación de API REST
 
