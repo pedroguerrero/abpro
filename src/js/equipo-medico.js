@@ -69,6 +69,12 @@ const cirujano = new Cirujano('Dr. Jorge', 10);
 
 cirujano.mostarDatos();
 
+const listaPolimorfica = [dr, pediatra, cirujano];
+
+listaPolimorfica.forEach((el) => {
+  el.mostarDatos();
+});
+
 window.removeDoctor = removeDoctor;
 
 function generateDoctorCard(doctor, index) {

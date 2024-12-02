@@ -218,7 +218,17 @@ export class Pediatra extends Doctor {
 ### Polimorfismo
 
 ```
+const dr = new Doctor('Dr. Juan', 'Cardiologo', 10, 30000);
 
+const pediatra = new Pediatra('Dr. Andres', 5);
+
+const cirujano = new Cirujano('Dr. Jorge', 10);
+
+const listaPolimorfica = [dr, pediatra, cirujano];
+
+listaPolimorfica.forEach((el) => {
+  el.mostarDatos();
+});
 ```
 
 ## Programación Asíncrona y Eventos
