@@ -61,6 +61,9 @@ function sortByFn(data, fn) {
 ### Pilas
 
 ```
+export class Stack {
+  data = [];
+
   push(item) {
     this.data.push(item);
   }
@@ -72,11 +75,15 @@ function sortByFn(data, fn) {
   isEmpty() {
     return this.data.length === 0;
   }
+}
 ```
 
 ### Colas
 
 ```
+export class Queue {
+  queue = [];
+
   enqueue(item) {
     this.queue.push(item);
   }
@@ -92,6 +99,8 @@ function sortByFn(data, fn) {
   length() {
     return this.queue.length;
   }
+}
+
 ```
 
 ## Implementación de Algoritmos y Estructuras de Datos
@@ -129,28 +138,81 @@ function calculateTotalHours(doctors, doctorList) {
   if (doctorList.length === 0) {
     return;
   }
+
+  const [doctor, ...rest] = doctorList;
+
+  if (!(doctor in doctors)) {
+    doctors[doctor] = 0;
+  }
+
+  doctors[doctor] += 1;
+
+  return calculateTotalHours(doctors, rest);
+}
 ```
 
 ## Programación Orientada a Objetos
 
+### Clase Doctor
+
 ```
+export class Doctor {
   constructor(nombre, especialidad, experiencia, precioConsulta) {
     this.nombre = nombre;
     this.especialidad = especialidad;
-    this._experiencia = experiencia;  // Encapsulación
+    this._experiencia = experiencia;
     this.precioConsulta = precioConsulta;
     this.pacienes = [];
   }
+
+  mostarDatos() {
+    console.log(
+      `Dr. Nombre: ${this.nombre}, Especialidad: ${this.especialidad}, Experiencia: ${this._experiencia}`
+    );
+  }
+
+  agregarPaciente(paciente) {
+    this.pacienes.push(paciente);
+  }
+
+  mostrarPacientes() {
+    console.log(`Pacientes del doctor ${this.nombre}`);
+    this.pacienes.forEach(({ nombre }) => {
+      console.log(nombre);
+    });
+  }
+
+  get experiencia() {
+    return this._experiencia;
+  }
+
+  set experiencia(experience) {
+    this._experiencia = experience;
+  }
+
+  totalIngresos() {
+    return this.pacienes.length * this.precioConsulta;
+  }
+}
 ```
 
 ### Herencia
 
 ```
+import { Doctor } from './Doctor';
+
 export class Pediatra extends Doctor {
   constructor(nombre, experiencia) {
     super(nombre, 'Pediatra', experiencia, 20000);
   }
+
+  mostarDatos() {
+    console.log(
+      `Pediatra. Nombre: ${this.nombre}, Especialidad: ${this.especialidad}, Experiencia: ${this._experiencia}`
+    );
+  }
 }
+
 ```
 
 ### Polimorfismo
@@ -181,9 +243,18 @@ async function getDoctors(cbError) {
 ### Event listeners
 
 ```
+
+// disparar evento
+const customEvent = new CustomEvent('newPatient', {
+  detail: patient,
+});
+
+// agregar listener para el evento
 document.addEventListener('newPatient', (event) => {
   const message = document.querySelector('#new-patient-alert');
   const {
     detail: { name, doctorName },
   } = event;
+  ...
+});
 ```
