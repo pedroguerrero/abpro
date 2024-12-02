@@ -354,6 +354,9 @@ document.addEventListener('newPatient', (event) => {
     </div>
   `;
 
+    document.querySelector('#total-agendados').innerHTML =
+      patientsQueue.length();
+
     setTimeout(() => {
       message.innerHTML = '';
     }, 3500);
