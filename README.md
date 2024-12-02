@@ -1,5 +1,31 @@
 # Modulo 3 Evaluación grupal
 
+## Descripción
+El objetivo de este Aprendizaje Basado en Proyectos es que los estudiantes integren todos
+los conceptos avanzados de JavaScript para mejorar y completar el sitio web del hospital.
+Deberán demostrar habilidades en la manipulación de datos, el uso de algoritmos y estructuras
+de datos, y la aplicación de programación funcional, asincrónica y orientada a objetos.
+
+## Acceso al proyecto
+Este proyecto utiliza Webpack como empaquetador de módulos para compilar y gestionar los archivos del proyecto.
+
+  Si tienes Git instalado en tu máquina, puedes clonar el repositorio usando el siguiente comando en tu terminal o línea de comandos:
+
+  ```
+  git clone https://github.com/pedroguerrero/abpro.git
+  ```
+ 
+  Instalar dependencias: Una vez dentro del proyecto, instala las dependencias utilizando 
+
+  ```
+  npm install
+  ```
+  Para iniciar el servidor de desarrollo con Webpack, ejecuta el siguiente comando:
+  
+  ```
+  npm run start
+  ```
+
 ## Autores
 
 - Pedro Guerrero
