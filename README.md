@@ -1,6 +1,7 @@
 # Modulo 3 Evaluación grupal
 
 ## Autores
+
 - Pedro Guerrero
 - Bastian Ortega
 - Nadja Villarroel
@@ -31,7 +32,7 @@ const clonedDocs = JSON.parse(JSON.stringify(doctors));
 ### Fusión (merge)
 
 ```
-  const [doctor, ...rest] = doctorList;
+const mergedData = [...doctors, ...services];
 ```
 
 ### Recorrido
@@ -39,7 +40,6 @@ const clonedDocs = JSON.parse(JSON.stringify(doctors));
 ```
 
 ```
-
 
 ## Implementación de Algoritmos y Estructuras de Datos
 
@@ -58,7 +58,7 @@ function sortByFn(data, fn) {
 }
 ```
 
-### Pilas 
+### Pilas
 
 ```
   push(item) {
@@ -95,7 +95,6 @@ function sortByFn(data, fn) {
 ```
 
 ## Implementación de Algoritmos y Estructuras de Datos
-
 
 ### Currying
 
@@ -144,7 +143,6 @@ function calculateTotalHours(doctors, doctorList) {
   }
 ```
 
-
 ### Herencia
 
 ```
@@ -158,6 +156,7 @@ export class Pediatra extends Doctor {
 ### Polimorfismo
 
 ```
+
 ```
 
 ## Programación Asíncrona y Eventos
