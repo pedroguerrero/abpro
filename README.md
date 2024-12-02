@@ -87,6 +87,10 @@ for (const merged of mergedData) {
 
 ## Implementación de Algoritmos y Estructuras de Datos
 
+### Bubble Sort
+
+El algoritmo de ordenamiento implementado en este ejercicio es **Bubble Sort** el cual tiene complejidad **O(n^2)**
+
 ```
 // ordenar data por la funcion pasada
 function sortByFn(data, fn) {
