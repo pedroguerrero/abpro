@@ -21,7 +21,7 @@ Este proyecto utiliza Webpack como empaquetador de módulos para compilar y gest
   npm install
   ```
   Para iniciar el servidor de desarrollo con Webpack, ejecuta el siguiente comando:
-  
+
   ```
   npm run start
   ```
@@ -29,6 +29,7 @@ Este proyecto utiliza Webpack como empaquetador de módulos para compilar y gest
 ## Autores
 
 - Pedro Guerrero
+- Edwin Maureira
 - Bastian Ortega
 - Nadja Villarroel
 
