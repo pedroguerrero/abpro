@@ -37,8 +37,20 @@ const mergedData = [...doctors, ...services];
 
 ### Recorrido
 
+Se utilizaron varios tipos de recorridos de arreglos como por ejemplo utilizando el metodo **forEach**
+
+```
+listaPolimorfica.forEach((el) => {
+  el.mostarDatos();
+});
 ```
 
+La iteracion a traves de un for
+
+```
+for (const merged of mergedData) {
+  console.log('Datos mergeados', merged);
+}
 ```
 
 ## Implementación de Algoritmos y Estructuras de Datos
