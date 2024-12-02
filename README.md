@@ -199,6 +199,28 @@ function calculateTotalHours(doctors, doctorList) {
 }
 ```
 
+### Busqueda
+
+El método .filter() es un algoritmo de filtrado de orden lineal o **O(n)**
+
+```
+searchText.addEventListener('keyup', (event) => {
+  try {
+    const searchTerm = event.target.value.trim();
+
+    const filteredDoctors = doctors.filter(
+      ({ name, description, especialidad }) =>
+        name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        especialidad.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    renderDoctors(filteredDoctors);
+  } catch (error) {
+    alert(`Error al buscar: ${error.message}`);
+  }
+});
+```
+
 ## Programación Orientada a Objetos
 
 ### Clase Doctor
@@ -301,8 +323,6 @@ async function getDoctors(cbError) {
 ### Event listeners
 
 ```
-
-// disparar evento
 const customEvent = new CustomEvent('newPatient', {
   detail: patient,
 });
